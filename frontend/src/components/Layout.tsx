@@ -16,7 +16,7 @@ import Sidebar from './Sidebar';
 import { useAuth } from '../contexts/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
 import { useTranslation } from 'react-i18next';
-import logo from '../assets/korean-air/korean-air-logo.png';
+import logo from '../assets/logo.png';
 import LanguageSwitcher from './LanguageSwitcher';
 
 interface LayoutProps {
