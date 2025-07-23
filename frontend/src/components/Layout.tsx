@@ -16,7 +16,7 @@ import Sidebar from './Sidebar';
 import { useAuth } from '../contexts/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
 import { useTranslation } from 'react-i18next';
-import logo from '../assets/korean-air/korean-air-logo.svg';
+import logo from '../assets/korean-air/korean-air-logo.png';
 import LanguageSwitcher from './LanguageSwitcher';
 
 interface LayoutProps {
@@ -63,9 +63,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   <img 
                     src={logo}
                     alt="Korean Air MCP Gateway" 
-                    className="h-8"
+                    className="h-10 dark:brightness-200 dark:contrast-200"
                   />
-                  <span className="ml-2 text-xl font-bold text-white">
+                  <span className="ml-3 text-xl font-bold text-white">
                     {t('app.title')}
                   </span>
                 </Link>
