@@ -9,12 +9,15 @@ import {
   KeyIcon,
   Cog6ToothIcon,
   SunIcon,
-  MoonIcon
+  MoonIcon,
+  GlobeAsiaAustraliaIcon
 } from '@heroicons/react/24/outline';
 import Sidebar from './Sidebar';
 import { useAuth } from '../contexts/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
-import logo from '../assets/logo.png';
+import { useTranslation } from 'react-i18next';
+import logo from '../assets/korean-air/korean-air-logo.svg';
+import LanguageSwitcher from './LanguageSwitcher';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -24,6 +27,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const { user, logout } = useAuth();
   const { theme, toggleTheme } = useTheme();
+  const { t } = useTranslation();
 
   const handleLogout = async () => {
     try {
@@ -36,7 +40,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 overflow-hidden">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-primary-700 shadow-md">
         <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Left side */}
@@ -44,7 +48,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               {/* Sidebar toggle button - visible on all screen sizes */}
               <button
                 type="button"
-                className="p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500 mr-2"
+                className="p-2 rounded-md text-white hover:text-gray-200 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 mr-2"
                 onClick={() => {
                   console.log('Toggle clicked, current state:', sidebarOpen);
                   setSidebarOpen(!sidebarOpen);
@@ -58,11 +62,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
                   <img 
                     src={logo}
-                    alt="MCP Gateway Logo" 
-                    className="h-8 w-8 dark:brightness-0 dark:invert"
+                    alt="Korean Air MCP Gateway" 
+                    className="h-8"
                   />
-                  <span className="ml-2 text-xl font-bold text-gray-900 dark:text-white">
-                    MCP Gateway
+                  <span className="ml-2 text-xl font-bold text-white">
+                    {t('app.title')}
                   </span>
                 </Link>
               </div>
@@ -75,8 +79,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 href="https://github.com/agentic-community/mcp-gateway-registry"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 text-gray-400 hover:text-gray-500 dark:text-gray-300 dark:hover:text-gray-100 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
-                title="View on GitHub"
+                className="p-2 text-white hover:text-gray-200 rounded-lg hover:bg-primary-600"
+                title={t('header.github')}
               >
                 <svg
                   className="h-5 w-5"
@@ -95,7 +99,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               {/* Theme toggle */}
               <button
                 onClick={toggleTheme}
-                className="p-2 text-gray-400 hover:text-gray-500 dark:text-gray-300 dark:hover:text-gray-100 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+                className="p-2 text-white hover:text-gray-200 rounded-lg hover:bg-primary-600"
               >
                 {theme === 'dark' ? (
                   <SunIcon className="h-5 w-5" />
@@ -103,18 +107,21 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   <MoonIcon className="h-5 w-5" />
                 )}
               </button>
+              
+              {/* Language switcher */}
+              <LanguageSwitcher />
 
               {/* User dropdown */}
               <Menu as="div" className="relative">
                 <div>
-                  <Menu.Button className="flex items-center space-x-3 text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 p-2 hover:bg-gray-100 dark:hover:bg-gray-700">
-                    <div className="h-8 w-8 rounded-full bg-purple-100 dark:bg-purple-800 flex items-center justify-center">
-                      <UserIcon className="h-5 w-5 text-purple-600 dark:text-purple-300" />
+                  <Menu.Button className="flex items-center space-x-3 text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 p-2 hover:bg-primary-600">
+                    <div className="h-8 w-8 rounded-full bg-white flex items-center justify-center">
+                      <UserIcon className="h-5 w-5 text-primary-700" />
                     </div>
-                    <span className="hidden md:block text-gray-700 dark:text-gray-100 font-medium">
-                      {user?.username || 'Admin'}
+                    <span className="hidden md:block text-white font-medium">
+                      {user?.username || t('header.admin')}
                     </span>
-                    <ChevronDownIcon className="h-4 w-4 text-gray-400" />
+                    <ChevronDownIcon className="h-4 w-4 text-white" />
                   </Menu.Button>
                 </div>
 
@@ -137,7 +144,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                           } flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-100`}
                         >
                           <KeyIcon className="mr-3 h-4 w-4" />
-                          Generate Token
+                          {t('userMenu.generateToken')}
                         </Link>
                       )}
                     </Menu.Item>
@@ -151,7 +158,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                           } flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-100`}
                         >
                           <Cog6ToothIcon className="mr-3 h-4 w-4" />
-                          Settings
+                          {t('userMenu.settings')}
                         </Link>
                       )}
                     </Menu.Item>
@@ -167,7 +174,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                           } flex items-center w-full px-4 py-2 text-sm text-gray-700 dark:text-gray-100`}
                         >
                           <ArrowRightOnRectangleIcon className="mr-3 h-4 w-4" />
-                          Sign out
+                          {t('userMenu.signOut')}
                         </button>
                       )}
                     </Menu.Item>

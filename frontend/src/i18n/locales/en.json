@@ -1,0 +1,58 @@
+{
+  "app": {
+    "title": "MCP Gateway Registry",
+    "description": "Manage your Model Context Protocol servers"
+  },
+  "header": {
+    "github": "View on GitHub",
+    "darkMode": "Dark Mode",
+    "lightMode": "Light Mode",
+    "admin": "Admin"
+  },
+  "sidebar": {
+    "filterServices": "Filter Services",
+    "all": "All Services",
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "withIssues": "With Issues",
+    "statistics": "Statistics",
+    "total": "Total",
+    "issues": "Issues",
+    "backToDashboard": "Back to Dashboard",
+    "generateToken": "Generate Token",
+    "adminAccess": "Admin Access",
+    "modifyAccess": "Modify Access",
+    "readOnlyAccess": "Read-only Access",
+    "scopes": "Scopes"
+  },
+  "serverCard": {
+    "official": "OFFICIAL",
+    "noDescription": "No description available",
+    "rating": "Rating",
+    "tools": "Tools",
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "healthy": "Healthy",
+    "unhealthy": "Unhealthy",
+    "unknown": "Unknown",
+    "refreshStatus": "Refresh health status",
+    "viewTools": "View tools"
+  },
+  "toolsModal": {
+    "toolsFor": "Tools for",
+    "viewSchema": "View Schema",
+    "noTools": "No tools available for this server."
+  },
+  "userMenu": {
+    "generateToken": "Generate Token",
+    "settings": "Settings",
+    "signOut": "Sign out"
+  },
+  "tokenGeneration": {
+    "title": "Token Generation",
+    "description": "Create personal access tokens for programmatic access to MCP servers",
+    "tokenInherit": "Tokens inherit your current permissions",
+    "configureExpiration": "Configure expiration time and scopes",
+    "programmaticAccess": "Use tokens for programmatic access"
+  }
+}

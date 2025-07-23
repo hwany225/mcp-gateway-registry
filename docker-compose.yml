@@ -28,7 +28,7 @@ services:
       - /opt/mcp-gateway/models:/app/registry/models
       - /home/ubuntu/ssl_data:/etc/ssl
       - /var/log/mcp-gateway:/app/logs
-      - /opt/mcp-gateway/auth_server/scopes.yml:/app/auth_server/scopes.yml
+      - /opt/mcp-gateway/auth_server:/app/auth_server
     depends_on:
       - auth-server
     restart: unless-stopped
@@ -47,11 +47,12 @@ services:
       - COGNITO_CLIENT_SECRET=${COGNITO_CLIENT_SECRET}
       - COGNITO_USER_POOL_ID=${COGNITO_USER_POOL_ID}
       - AWS_REGION=${AWS_REGION:-us-east-1}
+      - SCOPES_FILE=/app/config/scopes.yml
     ports:
       - "8888:8888"
     volumes:
       - /var/log/mcp-gateway:/app/logs
-      - /opt/mcp-gateway/auth_server/scopes.yml:/app/scopes.yml
+      - /opt/mcp-gateway/auth_server:/app/config
     restart: unless-stopped
 
   # Current Time MCP Server
@@ -99,7 +100,7 @@ services:
     volumes:
       - /opt/mcp-gateway/servers:/app/registry/servers
       - /opt/mcp-gateway/models:/app/registry/models
-      - /opt/mcp-gateway/auth_server/scopes.yml:/app/auth_server/scopes.yml
+      - /opt/mcp-gateway/auth_server:/app/auth_server
     ports:
       - "8003:8003"
     depends_on:

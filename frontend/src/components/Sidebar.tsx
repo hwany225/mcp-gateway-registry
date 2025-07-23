@@ -216,8 +216,8 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
           {/* Filters Section */}
           <div className="flex-1 p-4 md:p-6">
             <div className="flex items-center space-x-2 mb-4">
-              <FunnelIcon className="h-4 w-4 text-gray-600 dark:text-gray-400" />
-              <h3 className="text-sm font-medium text-gray-900 dark:text-white">Filter Services</h3>
+              <FunnelIcon className="h-4 w-4 text-primary-700 dark:text-primary-400" />
+              <h3 className="text-sm font-medium text-primary-700 dark:text-primary-400">Filter Services</h3>
             </div>
             
             <div className="space-y-2">
@@ -225,16 +225,20 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
                 <button
                   key={filter.key}
                   onClick={() => setActiveFilter(filter.key)}
-                  className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 ${
+                  className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 ${
                     activeFilter === filter.key
-                      ? 'bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 border border-primary-200 dark:border-primary-800'
-                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+                      ? 'bg-primary-700 text-white dark:bg-primary-700 dark:text-white'
+                      : 'text-gray-700 dark:text-gray-300 hover:bg-primary-50 dark:hover:bg-primary-900/20'
                   }`}
                   tabIndex={0}
                 >
                   <div className="flex items-center justify-between">
                     <span>{filter.label}</span>
-                    <span className="text-xs bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded-full">
+                    <span className={`text-xs px-2 py-1 rounded-full ${
+                      activeFilter === filter.key
+                        ? 'bg-white text-primary-700 dark:bg-primary-200 dark:text-primary-800'
+                        : 'bg-gray-200 dark:bg-gray-700'
+                    }`}>
                       {stats[filter.count as keyof typeof stats]}
                     </span>
                   </div>

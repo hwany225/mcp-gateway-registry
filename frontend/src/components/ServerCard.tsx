@@ -172,7 +172,7 @@ const ServerCard: React.FC<ServerCardProps> = ({ server, onToggle, onEdit, canMo
 
   return (
     <>
-      <div className="group bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 hover:border-gray-200 dark:hover:border-gray-600 shadow-sm hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+      <div className="group bg-white dark:bg-gray-800 rounded-lg border-t-4 border-primary-700 border-r border-b border-l border-gray-100 dark:border-gray-700 hover:border-primary-500 dark:hover:border-primary-500 shadow-sm hover:shadow-lg transition-all duration-300 h-full flex flex-col">
         {/* Header */}
         <div className="p-5 pb-4">
           <div className="flex items-start justify-between mb-4">
@@ -215,7 +215,7 @@ const ServerCard: React.FC<ServerCardProps> = ({ server, onToggle, onEdit, canMo
               {server.tags.slice(0, 3).map((tag) => (
                 <span
                   key={tag}
-                  className="px-2 py-1 text-xs font-medium bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded"
+                  className="px-2 py-1 text-xs font-medium bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded"
                 >
                   #{tag}
                 </span>
@@ -246,10 +246,10 @@ const ServerCard: React.FC<ServerCardProps> = ({ server, onToggle, onEdit, canMo
                 <button
                   onClick={handleViewTools}
                   disabled={loadingTools}
-                  className="flex items-center gap-2 text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 disabled:opacity-50 hover:bg-blue-50 dark:hover:bg-blue-900/20 px-2 py-1 -mx-2 -my-1 rounded transition-all"
+                  className="flex items-center gap-2 text-primary-700 hover:text-primary-600 dark:text-primary-400 dark:hover:text-primary-300 disabled:opacity-50 hover:bg-primary-50 dark:hover:bg-primary-900/20 px-2 py-1 -mx-2 -my-1 rounded transition-all"
                   title="View tools"
                 >
-                  <div className="p-1.5 bg-blue-50 dark:bg-blue-900/30 rounded">
+                  <div className="p-1.5 bg-primary-50 dark:bg-primary-900/30 rounded">
                     <WrenchScrewdriverIcon className="h-4 w-4" />
                   </div>
                   <div>
@@ -324,7 +324,7 @@ const ServerCard: React.FC<ServerCardProps> = ({ server, onToggle, onEdit, canMo
               <button
                 onClick={handleRefreshHealth}
                 disabled={loadingRefresh}
-                className="p-2.5 text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-all duration-200 disabled:opacity-50"
+                className="p-2.5 text-gray-500 hover:text-primary-700 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-all duration-200 disabled:opacity-50"
                 title="Refresh health status"
               >
                 <ArrowPathIcon className={`h-4 w-4 ${loadingRefresh ? 'animate-spin' : ''}`} />
@@ -340,7 +340,7 @@ const ServerCard: React.FC<ServerCardProps> = ({ server, onToggle, onEdit, canMo
                 />
                 <div className={`relative w-12 h-6 rounded-full transition-colors duration-200 ease-in-out ${
                   server.enabled 
-                    ? 'bg-blue-600' 
+                    ? 'bg-primary-700' 
                     : 'bg-gray-300 dark:bg-gray-600'
                 }`}>
                   <div className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full transition-transform duration-200 ease-in-out ${
@@ -356,14 +356,14 @@ const ServerCard: React.FC<ServerCardProps> = ({ server, onToggle, onEdit, canMo
       {/* Tools Modal */}
       {showTools && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 max-w-2xl w-full mx-4 max-h-[80vh] overflow-auto">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+          <div className="bg-white dark:bg-gray-800 rounded-lg border-t-4 border-primary-700 p-6 max-w-2xl w-full mx-4 max-h-[80vh] overflow-auto shadow-xl animate-fly-in">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-lg font-semibold text-primary-700 dark:text-primary-400">
                 Tools for {server.name}
               </h3>
               <button
                 onClick={() => setShowTools(false)}
-                className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                className="text-gray-500 hover:text-primary-700 dark:text-gray-400 dark:hover:text-primary-400 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 ✕
               </button>
@@ -372,8 +372,8 @@ const ServerCard: React.FC<ServerCardProps> = ({ server, onToggle, onEdit, canMo
             <div className="space-y-4">
               {tools.length > 0 ? (
                 tools.map((tool, index) => (
-                  <div key={index} className="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
-                    <h4 className="font-medium text-gray-900 dark:text-white mb-2">
+                  <div key={index} className="border-l-4 border-primary-500 border-t border-r border-b border-gray-200 dark:border-gray-700 rounded-lg p-4 hover:shadow-md transition-shadow">
+                    <h4 className="font-medium text-primary-700 dark:text-primary-400 mb-2">
                       {tool.name}
                     </h4>
                     {tool.description && (
@@ -383,7 +383,7 @@ const ServerCard: React.FC<ServerCardProps> = ({ server, onToggle, onEdit, canMo
                     )}
                     {tool.schema && (
                       <details className="text-xs">
-                        <summary className="cursor-pointer text-gray-500 dark:text-gray-300">
+                        <summary className="cursor-pointer text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300">
                           View Schema
                         </summary>
                         <pre className="mt-2 p-3 bg-gray-50 dark:bg-gray-900 border dark:border-gray-700 rounded overflow-x-auto text-gray-900 dark:text-gray-100">
