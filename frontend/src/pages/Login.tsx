@@ -153,16 +153,11 @@ const Login: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="flex justify-center items-center">
-          <span className="text-2xl font-bold text-gray-900 dark:text-white">
-            MCP Gateway
-          </span>
-        </div>
-        <h2 className="mt-6 text-center text-3xl font-bold text-gray-900 dark:text-white">
-          Sign in to MCP Gateway
+        <h2 className="text-center text-3xl font-bold text-gray-900 dark:text-white">
+          Sign in
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
-          Access your MCP server management dashboard
+          Access your server management dashboard
         </p>
       </div>
 
