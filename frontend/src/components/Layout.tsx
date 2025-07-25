@@ -62,8 +62,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
                   <img 
                     src={logo}
-                    alt="Korean Air MCP Gateway" 
-                    className="h-10 dark:brightness-200 dark:contrast-200"
+                    alt="MCP Gateway" 
+                    className="h-8 w-8 dark:brightness-0 dark:invert"
                   />
                   <span className="ml-3 text-xl font-bold text-white">
                     {t('app.title')}
