@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import axios from 'axios';
 
-import { EyeIcon, EyeSlashIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline';
+
 
 interface OAuthProvider {
   name: string;
@@ -192,9 +192,8 @@ const Login: React.FC = () => {
           {/* Traditional Login Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
             {error && (
-              <div className="p-4 text-sm text-red-700 bg-red-50 border border-red-200 rounded-lg dark:bg-red-900/30 dark:text-red-400 dark:border-red-800 flex items-start space-x-2">
-                <ExclamationTriangleIcon className="h-5 w-5 flex-shrink-0 mt-0.5" />
-                <span>{error}</span>
+              <div className="p-4 text-sm text-red-700 bg-red-50 border border-red-200 rounded-lg dark:bg-red-900/30 dark:text-red-400 dark:border-red-800">
+                {error}
               </div>
             )}
 
@@ -238,24 +237,19 @@ const Login: React.FC = () => {
                 />
                 <button
                   type="button"
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 text-sm"
                   onClick={() => setShowPassword(!showPassword)}
                   tabIndex={-1}
                 >
-                  {showPassword ? (
-                    <EyeSlashIcon className="h-5 w-5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300" />
-                  ) : (
-                    <EyeIcon className="h-5 w-5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300" />
-                  )}
+                  {showPassword ? 'Hide' : 'Show'}
                 </button>
               </div>
               {fieldErrors.password && (
                 <p className="mt-1 text-sm text-red-600 dark:text-red-400">{fieldErrors.password}</p>
               )}
               {capsLockOn && (
-                <p className="mt-1 text-sm text-yellow-600 dark:text-yellow-400 flex items-center space-x-1">
-                  <ExclamationTriangleIcon className="h-4 w-4" />
-                  <span>Caps Lock is on</span>
+                <p className="mt-1 text-sm text-yellow-600 dark:text-yellow-400">
+                  Caps Lock is on
                 </p>
               )}
             </div>
@@ -279,19 +273,9 @@ const Login: React.FC = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center space-x-2"
+              className="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
             >
-              {loading ? (
-                <>
-                  <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg>
-                  <span>Signing in...</span>
-                </>
-              ) : (
-                <span>Sign in</span>
-              )}
+              {loading ? 'Signing in...' : 'Sign in'}
             </button>
           </form>
         </div>
