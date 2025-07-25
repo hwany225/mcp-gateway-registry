@@ -16,7 +16,7 @@ import Sidebar from './Sidebar';
 import { useAuth } from '../contexts/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
 import { useTranslation } from 'react-i18next';
-import logo from '../assets/logo.png';
+
 import LanguageSwitcher from './LanguageSwitcher';
 
 interface LayoutProps {
@@ -60,12 +60,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               {/* Logo */}
               <div className="flex items-center ml-2 md:ml-0">
                 <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
-                  <img 
-                    src={logo}
-                    alt="MCP Gateway" 
-                    className="h-8 w-8 dark:brightness-0 dark:invert"
-                  />
-                  <span className="ml-3 text-xl font-bold text-white">
+                  <span className="text-xl font-bold text-white">
                     {t('app.title')}
                   </span>
                 </Link>
