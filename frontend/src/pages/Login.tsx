@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import axios from 'axios';
-import logo from '../assets/logo.png';
+
 import { EyeIcon, EyeSlashIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 
 interface OAuthProvider {
@@ -154,12 +154,7 @@ const Login: React.FC = () => {
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex justify-center items-center">
-          <img 
-            src={logo}
-            alt="MCP Gateway Logo" 
-            className="h-12 w-12 dark:brightness-0 dark:invert"
-          />
-          <span className="ml-3 text-2xl font-bold text-gray-900 dark:text-white">
+          <span className="text-2xl font-bold text-gray-900 dark:text-white">
             MCP Gateway
           </span>
         </div>
