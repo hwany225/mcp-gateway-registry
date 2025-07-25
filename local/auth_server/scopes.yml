@@ -1,0 +1,321 @@
+# This file defines the scopes for the MCP servers, detailing which servers and tools are accessible under different scopes.
+
+UI-Scopes:
+  mcp-registry-admin:
+    list_service:
+      - all
+    register_service:
+      - all
+    health_check_service:
+      - all
+    toggle_service:
+      - all
+    modify_service:
+      - all
+
+  mcp-registry-user:
+    list_service:
+      - mcpgw
+      - realserverfaketools
+    health_check_service:
+      - mcpgw
+
+  mcp-registry-developer:
+    list_service:
+      - all
+    register_service:
+      - all
+    health_check_service:
+      - all
+
+  mcp-registry-operator:
+    list_service:
+      - all
+    health_check_service:
+      - all
+    toggle_service:
+      - all
+
+# Group mappings - maps Cognito groups to both UI scopes AND server scopes
+group_mappings:
+  mcp-registry-admin:
+    # Admin gets both UI permissions and unrestricted server access
+    - mcp-registry-admin
+    - mcp-servers-unrestricted/read
+    - mcp-servers-unrestricted/execute
+  mcp-registry-user:
+    # Users get limited UI permissions and restricted server access
+    - mcp-registry-user
+    - mcp-servers-restricted/read
+  mcp-registry-developer:
+    # Developers can register services and have restricted access
+    - mcp-registry-developer
+    - mcp-servers-restricted/read
+    - mcp-servers-restricted/execute
+  mcp-registry-operator:
+    # Operators can control services but not register new ones
+    - mcp-registry-operator
+    - mcp-servers-restricted/read
+    - mcp-servers-restricted/execute
+
+
+mcp-servers-unrestricted/read:
+  - server: auth_server
+    methods:
+      - initialize
+      - notifications/initialized
+      - ping
+      - tools/list
+      - tools/call
+    tools:
+      - validate_request
+  - server: currenttime
+    methods:
+      - initialize
+      - notifications/initialized
+      - ping
+      - tools/list
+      - tools/call
+    tools:
+      - current_time_by_timezone
+  - server: mcpgw
+    methods:
+      - initialize
+      - notifications/initialized
+      - ping
+      - tools/list
+      - tools/call
+    tools:
+      - intelligent_tool_finder
+      - toggle_service
+      - register_service
+      - get_server_details
+      - get_service_tools
+      - refresh_service
+  - server: realserverfaketools
+    methods:
+      - initialize
+      - notifications/initialized
+      - ping
+      - tools/list
+      - tools/call
+    tools:
+      - quantum_flux_analyzer
+      - neural_pattern_synthesizer
+      - hyper_dimensional_mapper
+      - temporal_anomaly_detector
+      - user_profile_analyzer
+      - synthetic_data_generator
+  - server: fininfo
+    methods:
+      - initialize
+      - notifications/initialized
+      - ping
+      - tools/list
+      - tools/call
+    tools:
+      - get_stock_aggregates
+      - print_stock_data
+  - server: sre-gateway
+    methods:
+      - initialize
+      - notifications/initialized
+      - ping
+      - tools/list
+      - tools/call
+    tools:
+      - x_amz_bedrock_agentcore_search
+      - k8s-api___get_cluster_events
+      - k8s-api___get_deployment_status
+      - k8s-api___get_node_status
+      - k8s-api___get_pod_status
+      - k8s-api___get_resource_usage
+      - logs-api___analyze_log_patterns
+      - logs-api___count_log_events
+      - logs-api___get_error_logs
+      - logs-api___get_recent_logs
+      - logs-api___search_logs
+      - metrics-api___analyze_trends
+      - metrics-api___get_availability_metrics
+      - metrics-api___get_error_rates
+      - metrics-api___get_performance_metrics
+      - metrics-api___get_resource_metrics
+      - runbooks-api___get_common_resolutions
+      - runbooks-api___get_escalation_procedures
+      - runbooks-api___get_incident_playbook
+      - runbooks-api___get_troubleshooting_guide
+      - runbooks-api___search_runbooks
+
+
+mcp-servers-unrestricted/execute:
+    - server: auth_server
+      methods:
+        - initialize
+        - notifications/initialized
+        - ping
+        - tools/list
+        - tools/call
+      tools:
+        - validate_request
+    - server: currenttime
+      methods:
+        - initialize
+        - notifications/initialized
+        - ping
+        - tools/list
+        - tools/call
+      tools:
+        - current_time_by_timezone
+    - server: mcpgw
+      methods:
+        - initialize
+        - notifications/initialized
+        - ping
+        - tools/list
+        - tools/call
+      tools:
+        - toggle_service
+        - register_service
+        - get_server_details
+        - get_service_tools
+        - refresh_service
+        - intelligent_tool_finder
+    - server: realserverfaketools
+      methods:
+        - initialize
+        - notifications/initialized
+        - ping
+        - tools/list
+        - tools/call
+      tools:
+        - quantum_flux_analyzer
+        - neural_pattern_synthesizer
+        - hyper_dimensional_mapper
+        - temporal_anomaly_detector
+        - user_profile_analyzer
+        - synthetic_data_generator
+    - server: fininfo
+      methods:
+        - initialize
+        - notifications/initialized
+        - ping
+        - tools/list
+        - tools/call
+      tools:
+        - get_stock_aggregates
+        - print_stock_data
+    - server: sre-gateway
+      methods:
+        - initialize
+        - notifications/initialized
+        - ping
+        - tools/list
+        - tools/call
+      tools:
+        - x_amz_bedrock_agentcore_search
+        - k8s-api___get_cluster_events
+        - k8s-api___get_deployment_status
+        - k8s-api___get_node_status
+        - k8s-api___get_pod_status
+        - k8s-api___get_resource_usage
+        - logs-api___analyze_log_patterns
+        - logs-api___count_log_events
+        - logs-api___get_error_logs
+        - logs-api___get_recent_logs
+        - logs-api___search_logs
+        - metrics-api___analyze_trends
+        - metrics-api___get_availability_metrics
+        - metrics-api___get_error_rates
+        - metrics-api___get_performance_metrics
+        - metrics-api___get_resource_metrics
+        - runbooks-api___get_common_resolutions
+        - runbooks-api___get_escalation_procedures
+        - runbooks-api___get_incident_playbook
+        - runbooks-api___get_troubleshooting_guide
+        - runbooks-api___search_runbooks
+
+mcp-servers-restricted/read:
+  - server: auth_server
+    methods:
+      - initialize
+      - notifications/initialized
+      - ping
+      - tools/list
+      - tools/call
+    tools:
+      - validate_request
+  - server: currenttime
+    methods:
+      - initialize
+      - notifications/initialized
+      - ping
+      - tools/list
+      - tools/call
+    tools:
+      - current_time_by_timezone
+  - server: mcpgw
+    methods:
+      - initialize
+      - notifications/initialized
+      - ping
+      - tools/list
+      - tools/call
+    tools:
+      - intelligent_tool_finder
+  - server: realserverfaketools
+    methods:
+      - initialize
+      - notifications/initialized
+      - ping
+      - tools/list
+      - tools/call
+    tools:
+      - quantum_flux_analyzer
+      - neural_pattern_synthesizer
+      - hyper_dimensional_mapper
+      - temporal_anomaly_detector
+      - user_profile_analyzer
+      - synthetic_data_generator
+
+mcp-servers-restricted/execute:
+  - server: auth_server
+    methods:
+      - initialize
+      - notifications/initialized
+      - ping
+      - tools/list
+      - tools/call
+    tools:
+      - validate_request
+  - server: currenttime
+    methods:
+      - initialize
+      - notifications/initialized
+      - ping
+      - tools/list
+      - tools/call
+    tools:
+      - current_time_by_timezone
+  - server: mcpgw
+    methods:
+      - initialize
+      - notifications/initialized
+      - ping
+      - tools/list
+      - tools/call
+    tools:
+      - intelligent_tool_finder
+  - server: realserverfaketools
+    methods:
+      - initialize
+      - notifications/initialized
+      - ping
+      - tools/list
+      - tools/call
+    tools:
+      - quantum_flux_analyzer
+      - neural_pattern_synthesizer
+      - hyper_dimensional_mapper
+      - temporal_anomaly_detector
+      - user_profile_analyzer
+      - synthetic_data_generator
